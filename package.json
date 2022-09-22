@@ -1,0 +1,28 @@
+{
+  "name": "trebek-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "heroku-postbuild": "cd trebek_client && npm install && npm run build"
+  },
+  "dependencies": {
+    "express": "^4.18.1",
+    "path": "^0.12.7",
+    "websocket": "^1.0.34",
+    "ws": "^8.8.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/C14H14N2O4/Trebek-Server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/C14H14N2O4/Trebek-Server/issues"
+  },
+  "homepage": "https://github.com/C14H14N2O4/Trebek-Server#readme"
+}
