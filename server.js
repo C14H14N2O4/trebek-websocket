@@ -20,9 +20,6 @@ var winner = 'null';
 var isOpen = false;
 var alreadyPressed = false;
 
-// server.listen(webSocketsServerPort);
-// console.log('server sparked')
-
 const wsServer = new webSocketServer({
   httpServer: server
 });
@@ -48,10 +45,15 @@ wsServer.on('request', function(request) {
     collection.set(signal.player.id, signal.player.user);
     userID = signal.player.id;
     connections[userID] = connection;
+    players = Array.from(collection.values())
+    msg = {"type":"list", "content":`${players}`}
+    updateWinner(JSON.stringify(msg))
   }
   if (signal.type == "start") {
     isOpen = true;
     alreadyPressed = false;
+    msg = {"type":"ready", "content":"ready"}
+    updateWinner(JSON.stringify(msg))
   }
   if(signal.type == "reset") {
     isOpen = false;
@@ -89,7 +91,9 @@ wsServer.on('request', function(request) {
   
   connection.on('close', function(connection) {
     collection.delete(userID);
-    console.log(collection);
+    players = Array.from(collection.values())
+    msg = {"type":"list", "content":`${players}`}
+    updateWinner(JSON.stringify(msg))
   })
 })
 
